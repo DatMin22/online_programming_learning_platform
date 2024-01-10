@@ -3,6 +3,7 @@ import React, { Children } from 'react'
 import { getListCourseAPI } from '../../../APIs/QuanLyKhoaHocAPIs'
 import { useQuery } from '@tanstack/react-query'
 import { CustomButton } from '../../components/Button/CustomButton'
+import { useNavigate } from 'react-router-dom'
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -15,6 +16,7 @@ const DanhSachKhoaHoc = () => {
         queryKey: ['ListCourse'],
         queryFn: () => getListCourseAPI(),
     })
+    const navigate = useNavigate()
     return (
         <Container >
             <Grid container >
@@ -65,7 +67,8 @@ const DanhSachKhoaHoc = () => {
                                 </CardContent>
                                 <CardActions sx={{ padding: '0.8rem' }}>
                                     {/* <Button variant='outlined' fullWidth sx={{borderRadius:'8px'}}>Xem them</Button> */}
-                                    <CustomButton variant='outlined' fullWidth>Đăng ký</CustomButton>
+                                    <CustomButton variant='outlined' fullWidth
+                                        onClick={() => { navigate('chiTietKhoaHoc') }}>Chi tiết</CustomButton>
                                 </CardActions>
                             </Card>
                         </Grid>

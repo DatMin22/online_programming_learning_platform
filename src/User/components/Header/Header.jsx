@@ -5,6 +5,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuDanhMucKhoaHoc from '../MenuDanhMucKhoaHoc';
 import { CustomButton } from '../Button/CustomButton';
+import { Link } from 'react-router-dom';
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const Header = () => {
@@ -72,12 +73,8 @@ const Header = () => {
             <Container maxWidth="xl" sx={{ padding: '1rem' }}>
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="#app-bar-with-responsive-menu"
-                        sx={{
+                    <Link
+                        style={{
                             marginRight: 5,
                             paddingRight: 9,
                             display: { xs: 'none', md: 'flex' },
@@ -86,10 +83,12 @@ const Header = () => {
                             letterSpacing: '.3rem',
                             color: '#000',
                             textDecoration: 'none',
+                            fontSize:'1.3rem'
                         }}
+                        to={'/'}
                     >
                         D-learning
-                    </Typography>
+                    </Link>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton

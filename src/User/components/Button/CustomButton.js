@@ -6,11 +6,15 @@ export const CustomButton = styled(Button)({
     border: '1px solid #009b5d',
     color: '#fff',
     fontWeight: 700,
-    fontSize:'14px',
+    fontSize: '14px',
+    boxShadow: '0 5px 15px rgba(0, 0, 0, 0.308)',
     '&:hover': {
         backgroundColor: '#009b5ded',
-        border:'none'
+        border: 'none'
     },
+    
+
+
 })
 
 

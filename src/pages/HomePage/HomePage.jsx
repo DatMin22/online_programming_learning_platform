@@ -8,8 +8,8 @@ export const HomePage = () => {
     return (
 
         <>
-            <Header />
-            <Banner />
+            {/* <Header />
+            <Banner /> */}
 
             <DanhSachKhoaHoc />
         </>
