@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
-import { AppBar, Avatar, Box, Button, Container, IconButton, InputBase, Menu, MenuItem, Stack, Toolbar, Tooltip, Typography, alpha, styled } from '@mui/material';
+import { AppBar, Avatar, Box, Button, Container, IconButton, InputBase, Menu, MenuItem, Stack, TextField, Toolbar, Tooltip, Typography, alpha, styled } from '@mui/material';
 import AdbIcon from '@mui/icons-material/Adb';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuDanhMucKhoaHoc from '../MenuDanhMucKhoaHoc';
 import { CustomButton } from '../Button/CustomButton';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { PATH } from '../../../routes/path';
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const Header = () => {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+    const [anchorElNav, setAnchorElNav] = useState(null);
+    const [anchorElUser, setAnchorElUser] = useState(null);
+    const [searchValue, setSearchValue] = useState('');
+    const navigate = useNavigate()
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -97,7 +99,6 @@ const Header = () => {
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
                             onClick={handleOpenNavMenu}
-                            color="inherit"
                         >
                             <MenuIcon />
                         </IconButton>
@@ -120,7 +121,7 @@ const Header = () => {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                                <MenuItem key={page} onClick={handleCloseNavMenu} >
                                     <Typography textAlign="center">{page}</Typography>
                                 </MenuItem>
                             ))}
@@ -128,7 +129,6 @@ const Header = () => {
                         </Menu>
 
                     </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
                         noWrap
@@ -145,19 +145,25 @@ const Header = () => {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        {/* <img src="/images/D-Learning.png" width={250} alt="" /> */}
                     </Typography>
                     <Box sx={{ width: '100%', display: { xs: 'none', md: 'flex' }, justifyContent: 'space-around', alignItems: 'center' }}>
                         <MenuDanhMucKhoaHoc />
-                        <Search sx={{ height: '100%' }} style={{ width: '50%' }} >
-                            <SearchIconWrapper>
-                                <SearchIcon />
-                            </SearchIconWrapper>
-                            <StyledInputBase
-                                placeholder="Tìm khóa học"
-                                inputProps={{ 'aria-label': 'search' }}
-                            />
-                        </Search>
+
+                        <form className="group" style={{width:'100%'}}
+                            onSubmit={(event) => {
+                                event.preventDefault()
+                                navigate(`/${PATH.TIM_KIEM_KHOA_HOC}/${searchValue}`)
+
+                            }}>
+                            <svg className="icon" aria-hidden="true" viewBox="0 0 24 24"><g><path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z" /></g></svg>
+                            <input placeholder="Tìm kiếm" type="search"
+                                value={searchValue}
+                                onChange={(event) => {
+                                    setSearchValue(event.target.value)
+                                }} className="input" />
+                        </form>
+
 
                     </Box>
 

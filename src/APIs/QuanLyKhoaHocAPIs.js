@@ -32,7 +32,7 @@ export const getCourseByMaKhoaHocAPI = async (maKhoaHoc) => {
             {
                 params: {
                     maKhoaHoc: maKhoaHoc,
-                    
+
                 },
             });
         console.log('thông tin khóa học: ', response)
@@ -53,6 +53,21 @@ export const filterCourseByCategoryIdAPI = async (categoryId) => {
                 },
             });
         console.log('khóa học theo dnah mục: ', response)
+        return response.data
+    } catch (error) {
+        throw "Loi";
+    }
+}
+export const searchCourseByNameAPI = async (tenKhoaHoc) => {
+    try {
+        const response = await fetcher.get("/QuanLyKhoaHoc/LayDanhSachKhoaHoc",
+            {
+                params: {
+                    tenKhoaHoc: tenKhoaHoc,
+                    MaNhom: GROUP_CODE
+                },
+            });
+        console.log('tìm kiếm khóa học: ', response)
         return response.data
     } catch (error) {
         throw "Loi";

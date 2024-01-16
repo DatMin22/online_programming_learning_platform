@@ -1,13 +1,12 @@
 /* #009b5d */
 html,
-body,
-* {
+body {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    /* overflow-x: hidden; */
+    overflow-x: hidden;
 }
-body{
+body {
     overflow-x: hidden;
 }
 a {
@@ -93,6 +92,49 @@ a {
     -moz-box-shadow: 0px 4px 6px 0px rgba(144, 144, 144, 0.35); */
     background: url(https://images.unsplash.com/photo-1607799279861-4dd421887fb3?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
         no-repeat center/cover;
+}
+
+.group {
+    display: flex;
+    line-height: 28px;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    margin-left: 3rem;
+}
+
+.input {
+    width: 70%;
+    height: 40px;
+    line-height: 28px;
+    padding: 0 1rem;
+    padding-left: 2.5rem;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    outline: none;
+    background-color: #f3f3f4;
+    color: #0d0c22;
+    transition: 0.3s ease;
+}
+
+.input::placeholder {
+    color: #9e9ea7;
+}
+
+.input:focus,
+input:hover {
+    outline: none;
+    border-color: rgba(234, 76, 137, 0.4);
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
+}
+
+.icon {
+    position: absolute;
+    left: 1rem;
+    fill: #9e9ea7;
+    width: 1rem;
+    height: 1rem;
 }
 
 @keyframes rotate {

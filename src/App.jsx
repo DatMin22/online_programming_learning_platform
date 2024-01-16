@@ -6,6 +6,7 @@ import UserLayout from './layouts/UserLayout'
 import ChiTietKhoaHoc from './User/modules/ChiTietKhoaHoc'
 import { PATH } from './routes/path'
 import DanhSachKhoaHocTheoDanhMuc from './User/modules/DanhSachKhoaHocTheoDanhMuc'
+import SearchCourse from './User/SearchCourse'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path={`/${PATH.DANH_SACH_KHOA_HOC_THEO_DM}/:maDanhMuc/:MaNhom`} element={<DanhSachKhoaHocTheoDanhMuc />} />
 
           <Route path='chiTietKhoaHoc/:maKhoaHoc' element={<ChiTietKhoaHoc />} />
+          <Route path={`/${PATH.TIM_KIEM_KHOA_HOC}/:tenKhoaHoc`} element={<SearchCourse />} />
 
 
 
