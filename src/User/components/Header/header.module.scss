@@ -1,0 +1,22 @@
+header {
+    .logoDL {
+        display: none;
+    }
+}
+@media only screen and (max-width: 1400px) {
+    header {
+        .logoDL {
+            display: none;
+        }
+    }
+}
+@media only screen and (max-width: 900px) {
+    header {
+        .logoDLearning {
+            display: none;
+        }
+        .logoDL {
+            display: block;
+        }
+    }
+}

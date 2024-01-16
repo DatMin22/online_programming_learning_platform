@@ -7,12 +7,14 @@ import MenuDanhMucKhoaHoc from '../MenuDanhMucKhoaHoc';
 import { CustomButton } from '../Button/CustomButton';
 import { Link, useNavigate } from 'react-router-dom';
 import { PATH } from '../../../routes/path';
+import header from './header.module.scss'
 const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
 const Header = () => {
-    const [anchorElNav, setAnchorElNav] = useState(null);
-    const [anchorElUser, setAnchorElUser] = useState(null);
-    const [searchValue, setSearchValue] = useState('');
+    const [anchorElNav, setAnchorElNav] = useState(null)
+    const [anchorElUser, setAnchorElUser] = useState(null)
+    const [searchValue, setSearchValue] = useState('')
+    const isLogin = true
     const navigate = useNavigate()
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -74,22 +76,14 @@ const Header = () => {
         <AppBar position="fixed" style={{ backgroundColor: '#fff', boxShadow: 'none' }}>
             <Container maxWidth="xl" sx={{ padding: '1rem' }}>
                 <Toolbar disableGutters>
-                    {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
                     <Link
-                        // style={{
-                        //     marginRight: 5,
-                        //     paddingRight: 9,
-                        //     display: { xs: 'none', md: 'flex' },
-                        //     fontFamily: 'monospace',
-                        //     fontWeight: 700,
-                        //     letterSpacing: '.3rem',
-                        //     color: '#000',
-                        //     textDecoration: 'none',
-                        //     fontSize:'1.3rem'
-                        // }}
+                        style={{
+                            margin: '0 1.5rem'
+                        }}
                         to={'/'}
                     >
-                        <img src="/images/D-Learning.png" width={250} alt="" />
+                        <img style={{
+                        }} src="/images/D-Learning.png" className={header.logoDLearning} width={200} alt="logo" />
                     </Link>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -129,28 +123,25 @@ const Header = () => {
                         </Menu>
 
                     </Box>
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        component="a"
-                        href="#app-bar-with-responsive-menu"
-                        sx={{
+                    <Link
+
+                        style={{
                             mr: 4,
-                            display: { xs: 'flex', md: 'none' },
+                            // display: { xs: 'flex', md: 'none' },
                             flexGrow: 1,
-                            fontFamily: 'monospace',
                             fontWeight: 700,
                             letterSpacing: '.3rem',
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
+                        to={'/'}
                     >
-                        {/* <img src="/images/D-Learning.png" width={250} alt="" /> */}
-                    </Typography>
+                        <img src="/images/DL.png" width={50} alt="" className={header.logoDL} />
+                    </Link>
                     <Box sx={{ width: '100%', display: { xs: 'none', md: 'flex' }, justifyContent: 'space-around', alignItems: 'center' }}>
                         <MenuDanhMucKhoaHoc />
 
-                        <form className="group" style={{width:'100%'}}
+                        <form className="group" style={{ width: '100%' }}
                             onSubmit={(event) => {
                                 event.preventDefault()
                                 navigate(`/${PATH.TIM_KIEM_KHOA_HOC}/${searchValue}`)
@@ -168,11 +159,11 @@ const Header = () => {
                     </Box>
 
                     <Box sx={{ display: 'flex' }}>
-                        <Stack direction={'row'} spacing={2}>
+                        <Stack direction={'row'} spacing={2} style={{ display: isLogin ? "none" : "flex" }}>
                             <CustomButton variant='contained' sx={{ width: 'max-content' }} >Đăng nhập </CustomButton>
                             <CustomButton variant='contained' sx={{ width: 'max-content' }} >Đăng ký </CustomButton>
                         </Stack>
-                        <Tooltip title="Open settings" >
+                        <Tooltip title="Open settings" style={{ display: isLogin ? "block" : "none" }}>
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                             </IconButton>
