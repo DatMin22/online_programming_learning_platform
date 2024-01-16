@@ -2,6 +2,9 @@ import { Box, FormControl, InputLabel, MenuItem, OutlinedInput, Select, Typograp
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react'
 import { getListCategoryCourseAPI } from '../../../APIs/QuanLyKhoaHocAPIs';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { PATH } from '../../../routes/path';
+import { GROUP_CODE } from '../../../constant';
 const names = [
     'Oliver Hansen',
     'Van Henry',
@@ -16,9 +19,12 @@ const names = [
 ];
 const MenuDanhMucKhoaHoc = () => {
     const [danhMuc, setDanhMuc] = useState('');
-
+    const navigate = useNavigate()
     const handleChange = (event) => {
-        setDanhMuc(event.target.value);
+        // setDanhMuc(event.target.value);
+        // <Navigate to={PATH.DANH_SACH_KHOA_HOC_THEO_DM} />
+        // navigate(`/${PATH.DANH_SACH_KHOA_HOC_THEO_DM}?maDanhMuc=${event.target.value}`)
+        navigate(`/${PATH.DANH_SACH_KHOA_HOC_THEO_DM}/${event.target.value}/${GROUP_CODE}`)
     };
     const { isPending, error, data } = useQuery({
         queryKey: ['ListCategory'],
@@ -43,7 +49,7 @@ const MenuDanhMucKhoaHoc = () => {
                             style={{ border: 'none!important', outline: 'none!important' }}
 
                             key={cate.maDanhMuc}
-                            value={cate.tenDanhMuc}
+                            value={cate.maDanhMuc}
                         >
                             {cate.tenDanhMuc}
                         </MenuItem>

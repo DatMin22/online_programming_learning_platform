@@ -2,20 +2,29 @@ import { Box, Card, CardActions, CardContent, CardHeader, CardMedia, Container, 
 import React from 'react'
 import { CustomButton } from '../../components/Button/CustomButton'
 import Header from '../../components/Header'
+import { getCourseByMaKhoaHocAPI } from '../../../APIs/QuanLyKhoaHocAPIs'
+import { useQuery } from '@tanstack/react-query'
+import { useParams } from 'react-router-dom'
 
 const ChiTietKhoaHoc = () => {
+    const { maKhoaHoc } = useParams()
+    const { isPending, error, data } = useQuery({
+        queryKey: ['CourseDetail'],
+        queryFn: () => getCourseByMaKhoaHocAPI(maKhoaHoc),
+    })
+    console.log('data: ', data);
+
     return (
         <>
             <Header />
             <Container sx={{ marginTop: '10rem' }}>
                 <Stack direction={'row'}>
-                    <Card sx={{ margin: '.5rem', width: '100%', maxWidth: '100%', borderRadius: '12px' }}>
+                    <Card sx={{ margin: '.5rem', maxWidth: '100%', borderRadius: '12px' }}>
                         <CardMedia
                             component="img"
                             alt="green iguana"
                             height="140"
-                            image={'item.hinhAnh'}
-                            sx={{ margin: '1rem' }}
+                            image={data?.hinhAnh}
                         />
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="div"
@@ -27,7 +36,7 @@ const ChiTietKhoaHoc = () => {
                                     lineHeight: '21px',
                                     marginBottom: '5px'
                                 }}>
-                                Tên khóa Học
+                                {data?.tenKhoaHoc}
                             </Typography>
 
                             <Stack direction={'row'} spacing={2}>
@@ -40,20 +49,18 @@ const ChiTietKhoaHoc = () => {
                                     color: '#747c82',
                                     fontSize: '12px'
                                 }} ><i class="fa-solid fa-graduation-cap" style={{ margin: '0 .5rem' }}></i>1,242 Học viên</Typography>
-                                {/* <Typography sx={{
-                                            color: '#747c82',
-                                            fontSize: '12px'
-                                        }} ><i class="fa-solid fa-graduation-cap" style={{ margin: '0 .5rem' }}></i>Lượt xem {item.luotXem}</Typography> */}
 
                             </Stack>
                         </CardContent>
                         <CardActions sx={{ padding: '0.8rem' }}>
-                            {/* <Button variant='outlined' fullWidth sx={{borderRadius:'8px'}}>Xem them</Button> */}
                             <CustomButton variant='outlined' fullWidth
-                                onClick={() => { navigate('chiTietKhoaHoc') }}>Đăng ký</CustomButton>
+                                onClick={() => { navigate('chiTietKhoaHoc') }}>Tham gia </CustomButton>
                         </CardActions>
                     </Card>
-                    <Card sx={{ margin: '.5rem', maxWidth: '100%', borderRadius: '12px' }}>
+
+
+                    {/* chitiet */}
+                    <Card sx={{ margin: '.5rem', width: '100%', maxWidth: '100%', borderRadius: '12px' }}>
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="div"
                                 sx={{
@@ -64,11 +71,12 @@ const ChiTietKhoaHoc = () => {
                                     lineHeight: '32px',
                                     marginBottom: '6px'
                                 }}>
-                                Tên khóa Học
-                                {/* Food Safety Training - Safe Practices and Procedures */}
+                                {data?.tenKhoaHoc}
+
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae amet atque voluptate eaque? Quae id optio quia laudantium ea nam asperiores velit cupiditate. Deleniti blanditiis aut corporis? Blanditiis quo aperiam officia nesciunt aut, accusamus sapiente placeat atque ad? Labore perferendis tenetur voluptatem provident minima, fuga doloremque ipsa sint ducimus natus.
+                                {data?.moTa}
+
                             </Typography>
                         </CardContent>
                         <CardActions sx={{ padding: '0.8rem' }}>

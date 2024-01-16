@@ -22,7 +22,7 @@ const DanhSachKhoaHoc = () => {
             <Grid container >
                 {
                     data?.map((item) => (
-                        <Grid xs={4} md={3} key={item.maKhoaHoc} gap={4}>
+                        <Grid xs={12} md={3} sm={4} key={item.maKhoaHoc} gap={4}>
                             <Card sx={{ margin: '.5rem', maxWidth: '100%', borderRadius: '12px' }}>
                                 <CardMedia
                                     component="img"
@@ -68,7 +68,7 @@ const DanhSachKhoaHoc = () => {
                                 <CardActions sx={{ padding: '0.8rem' }}>
                                     {/* <Button variant='outlined' fullWidth sx={{borderRadius:'8px'}}>Xem them</Button> */}
                                     <CustomButton variant='outlined' fullWidth
-                                        onClick={() => { navigate('chiTietKhoaHoc') }}>Chi tiết</CustomButton>
+                                        onClick={() => { navigate(`chiTietKhoaHoc/${item.maKhoaHoc}`) }}>Chi tiết</CustomButton>
                                 </CardActions>
                             </Card>
                         </Grid>

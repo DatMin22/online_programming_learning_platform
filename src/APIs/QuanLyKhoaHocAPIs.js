@@ -25,3 +25,36 @@ export const getListCourseAPI = async () => {
         throw "Loi";
     }
 }
+// chi tiết khóa học
+export const getCourseByMaKhoaHocAPI = async (maKhoaHoc) => {
+    try {
+        const response = await fetcher.get("/QuanLyKhoaHoc/LayThongTinKhoaHoc",
+            {
+                params: {
+                    maKhoaHoc: maKhoaHoc,
+                    
+                },
+            });
+        console.log('thông tin khóa học: ', response)
+        return response.data;
+    } catch (error) {
+        throw "Loi";
+    }
+}
+
+// khóa học theo mã dnah mục
+export const filterCourseByCategoryIdAPI = async (categoryId) => {
+    try {
+        const response = await fetcher.get("/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc",
+            {
+                params: {
+                    maDanhMuc: categoryId,
+                    MaNhom: GROUP_CODE
+                },
+            });
+        console.log('khóa học theo dnah mục: ', response)
+        return response.data
+    } catch (error) {
+        throw "Loi";
+    }
+}

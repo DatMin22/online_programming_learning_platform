@@ -72,22 +72,22 @@ const Header = () => {
         <AppBar position="fixed" style={{ backgroundColor: '#fff', boxShadow: 'none' }}>
             <Container maxWidth="xl" sx={{ padding: '1rem' }}>
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                    {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
                     <Link
-                        style={{
-                            marginRight: 5,
-                            paddingRight: 9,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: '#000',
-                            textDecoration: 'none',
-                            fontSize:'1.3rem'
-                        }}
+                        // style={{
+                        //     marginRight: 5,
+                        //     paddingRight: 9,
+                        //     display: { xs: 'none', md: 'flex' },
+                        //     fontFamily: 'monospace',
+                        //     fontWeight: 700,
+                        //     letterSpacing: '.3rem',
+                        //     color: '#000',
+                        //     textDecoration: 'none',
+                        //     fontSize:'1.3rem'
+                        // }}
                         to={'/'}
                     >
-                        D-learning
+                        <img src="/images/D-Learning.png" width={250} alt="" />
                     </Link>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
