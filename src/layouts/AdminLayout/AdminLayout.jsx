@@ -1,10 +1,11 @@
+import { AdminPage } from "../../pages/AdminPage/AdminPage"
 
 
 const AdminLayout = () => {
 
     return (
         <>
-            ADMIN LAYOUT
+            <AdminPage />
         </>
     )
 

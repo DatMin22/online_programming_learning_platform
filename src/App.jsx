@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { HomePage } from './pages/HomePage/HomePage'
@@ -8,15 +7,19 @@ import { PATH } from './routes/path'
 import DanhSachKhoaHocTheoDanhMuc from './User/modules/DanhSachKhoaHocTheoDanhMuc'
 import SearchCourse from './User/SearchCourse'
 import Login from './User/modules/Login/Login'
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HomePage } from "./pages/HomePage/HomePage";
+import UserLayout from "./layouts/UserLayout";
+import AdminLayout from "./layouts/AdminLayout/AdminLayout";
+import { AdminPage } from "./pages/AdminPage/AdminPage";
+
 
 function App() {
-
   return (
     <BrowserRouter>
       {/* <Header /> */}
       <Routes>
-
-
         {/* Nest Router */}
         {/* GIAO DIỆN NGƯỜI DÙNG */}
         <Route path='/' element={<UserLayout />}>
@@ -32,16 +35,21 @@ function App() {
         </Route>
         <Route path={PATH.LOGIN} element={<Login />} />
 
+        {/* GIAO DIỆN ADMIN */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminPage />} />
+        </Route>
 
 
 
 
 
 
-      </Routes>
 
-    </BrowserRouter>
-  )
+      </Routes >
+
+    </BrowserRouter >
+  );
 }
 
-export default App
+export default App;
