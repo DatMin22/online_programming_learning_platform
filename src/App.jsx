@@ -8,9 +8,6 @@ import DanhSachKhoaHocTheoDanhMuc from './User/modules/DanhSachKhoaHocTheoDanhMu
 import SearchCourse from './User/SearchCourse'
 import Login from './User/modules/Login/Login'
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { HomePage } from "./pages/HomePage/HomePage";
-import UserLayout from "./layouts/UserLayout";
 import AdminLayout from "./layouts/AdminLayout/AdminLayout";
 import { AdminPage } from "./pages/AdminPage/AdminPage";
 
