@@ -8,14 +8,38 @@ import { CustomButton } from '../Button/CustomButton';
 import { Link, useNavigate } from 'react-router-dom';
 import { PATH } from '../../../routes/path';
 import header from './header.module.scss'
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
+import { CURRENT_USER, TOKEN } from '../../../constant';
+
 const Header = () => {
+    const navigate = useNavigate()
+    const [currentUser, setCurrentUser] = useState(() => {
+        return localStorage.getItem(CURRENT_USER) ? JSON.parse(localStorage.getItem(CURRENT_USER)) : null
+
+    })
+    const pages = ['Products', 'Pricing', 'Blog']
+
+    const settings = [
+        <Link onClick={() => {
+        }}>{currentUser && currentUser.hoTen}</Link>,
+        <Link onClick={() => {
+
+        }}>Tài khoản</Link>,
+        <Link style={{ display: currentUser != null && currentUser.maLoaiNguoiDung == 'GV' ? "block" : "none" }}
+            onClick={() => {
+
+            }}>Quản trị</Link>,
+        <Link onClick={() => {
+            setCurrentUser(null)
+            localStorage.setItem(TOKEN, null)
+            localStorage.setItem(CURRENT_USER, null)
+            navigate(PATH.HOME)
+        }}>Đăng xuất</Link>]
+
+    console.log('CURRENT_USER: ', currentUser)
     const [anchorElNav, setAnchorElNav] = useState(null)
     const [anchorElUser, setAnchorElUser] = useState(null)
     const [searchValue, setSearchValue] = useState('')
-    const isLogin = true
-    const navigate = useNavigate()
+    const isLogin = false
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -159,11 +183,11 @@ const Header = () => {
                     </Box>
 
                     <Box sx={{ display: 'flex' }}>
-                        <Stack direction={'row'} spacing={2} style={{ display: isLogin ? "none" : "flex" }}>
-                            <CustomButton variant='contained' sx={{ width: 'max-content' }} >Đăng nhập </CustomButton>
+                        <Stack direction={'row'} spacing={2} style={{ display: currentUser != null ? "none" : "flex" }}>
+                            <CustomButton variant='contained' sx={{ width: 'max-content' }} onClick={() => { navigate(PATH.LOGIN) }}>Đăng nhập </CustomButton>
                             <CustomButton variant='contained' sx={{ width: 'max-content' }} >Đăng ký </CustomButton>
                         </Stack>
-                        <Tooltip title="Open settings" style={{ display: isLogin ? "block" : "none" }}>
+                        <Tooltip title="Open settings" style={{ display: currentUser != null ? "block" : "none" }}>
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                             </IconButton>

@@ -7,6 +7,7 @@ import ChiTietKhoaHoc from './User/modules/ChiTietKhoaHoc'
 import { PATH } from './routes/path'
 import DanhSachKhoaHocTheoDanhMuc from './User/modules/DanhSachKhoaHocTheoDanhMuc'
 import SearchCourse from './User/SearchCourse'
+import Login from './User/modules/Login/Login'
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
 
 
         </Route>
-
+        <Route path={PATH.LOGIN} element={<Login />} />
 
 
 

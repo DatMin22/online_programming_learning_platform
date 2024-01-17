@@ -1,0 +1,30 @@
+div {
+    .formAnimate {
+        position: absolute;
+        // top: 50%;
+        right: 0;
+        bottom: 0;
+        // transform: translate(50%, -50%);
+        z-index: -1;
+        width: 40%;
+        // height: 100vh;
+    }
+    .login {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    input:hover {
+        outline: none;
+        border: none;
+        box-shadow: none;
+    }
+}
+@media only screen and (max-width: 720px) {
+    .login {
+        .loginBg {
+            display: none;
+        }
+    }
+}
