@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   styled,
-  AppBar,
-  Toolbar,
   IconButton,
-  Typography,
   Container,
   TextField,
   Button,
@@ -21,51 +18,60 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import SearchIcon from '@mui/icons-material/Search';
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate } from "react-router-dom";
 import { getListUserApi, addUserApi, deleteUserApi, updateUserApi, searchUserApi } from '../../APIs/QuanLyNguoiDungAPI';
 
 const MainContent = styled(Container)({
-  marginLeft: '240px',
+  marginLeft: '140px',
   padding: '16px',
 });
 
-export const AdminPage = () => {
-  const [users, setUsers] = useState([]);
-  const [newUserName, setNewUserName] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
+  export const AdminPage = () => {
+    const [newUserName, setNewUserName] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
+    const [users, setUsers] = useState([]);
+    const navigate = useNavigate();
 
-  const { isFetching, error, data: userData } = useQuery({
-    queryKey: ['ListUser'],
-    queryFn: () => getListUserApi(),
-});
+    const { isFetching, error, data } = useQuery({
+      queryKey: ['ListUser'],
+      queryFn: () => getListUserApi(),
+  });
 
-  const handleAddUser = async () => {
-    try {
-      await addUserApi();
-      const newData = await getListUserApi();
-      setUsers(newData);
-    } catch (error) {
-      console.error('Error adding user:', error);
-    }
-  };
+  useEffect(() => {
+    handleSearch();
+  }, [searchTerm]);
+  
+
   const handleDeleteUser = async (taiKhoan) => {
     try {
       await deleteUserApi(taiKhoan);
+      // Refetch user data after deletion
       refetch();
     } catch (error) {
       console.error('Error deleting user:', error);
+  
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.error('Server error:', error.response.data);
+        console.error('Status code:', error.response.status);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error('No response from server');
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error('Error setting up the request:', error.message);
+      }
     }
   };
-
-  const handleEditUser = (taiKhoan) => {
-    console.log(`Edit user with ID: ${taiKhoan}`);
-  };
-
+  
+  
   const handleSearch = async () => {
     try {
-      const searchData = await searchUserApi();
-      setUsers(searchData);
+      const searchResultsData = await searchUserApi(searchTerm);
+      setUsers(searchResultsData); 
     } catch (error) {
-      console.error('Error searching users:', error);
+      console.error('Error searching user:', error);
     }
   };
 
@@ -73,21 +79,15 @@ export const AdminPage = () => {
     <div>
 
       <MainContent>
-        {/* Chức năng thêm người dùng */}
-        <TextField
-          label="Tên người dùng"
-          variant="outlined"
-          value={newUserName}
-          onChange={(e) => setNewUserName(e.target.value)}
-          style={{ marginBottom: '16px' }}
-        />
         <Button
           variant="contained"
           startIcon={<AddIcon />}
-          onClick={handleAddUser}
+          onClick={() => {
+            navigate(`/add-user`);
+          }}
           style={{ marginRight: '16px' }}
         >
-          Thêm
+          Thêm Người Dùng
         </Button>
 
         {/* Chức năng tìm kiếm người dùng */}
@@ -119,8 +119,8 @@ export const AdminPage = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {users.map((user) => (
-                <TableRow key={user.maLoaiNguoiDung}>
+              {data?.map((user) => (
+                <TableRow key={user.taiKhoan}>
                   <TableCell>{user.taiKhoan}</TableCell>
                   <TableCell>{user.hoTen}</TableCell>
                   <TableCell>{user.email}</TableCell>

@@ -10,6 +10,10 @@ import Login from './User/modules/Login/Login'
 import "./App.css";
 import AdminLayout from "./layouts/AdminLayout/AdminLayout";
 import { AdminPage } from "./pages/AdminPage/AdminPage";
+import AddUser from './User/modules/AddUser/AddUser'
+import { SelectPage } from './pages/AdminPage/SelectPage'
+import CourseManagement from './pages/AdminPage/CourseManagement'
+import AddCourse from './User/modules/AddUser/AddCourse'
 
 
 function App() {
@@ -34,8 +38,13 @@ function App() {
 
         {/* GIAO DIỆN ADMIN */}
         <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<AdminPage />} />
+          <Route index element={<SelectPage />} />
         </Route>
+        <Route path="/admin/quanlynguoidung" element={<AdminPage />} />
+        <Route path="/admin/quanlykhoahoc" element={<CourseManagement />} />
+        <Route path="/add-user" element={<AddUser />} />
+        <Route path="/add-course" element={<AddCourse />} />
+
 
 
 
