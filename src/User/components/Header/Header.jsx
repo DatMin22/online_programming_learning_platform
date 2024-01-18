@@ -16,29 +16,33 @@ const Header = () => {
         return localStorage.getItem(CURRENT_USER) ? JSON.parse(localStorage.getItem(CURRENT_USER)) : null
 
     })
-    const pages = ['Products', 'Pricing', 'Blog']
+    const pages = ['Khóa học', 'Blog', 'Sự kiện',
+        <Link
+            to={PATH.LOGIN}
+            style={{ display: currentUser != null ? "none" : "block" }}
+        >
+            Đăng nhập
+        </Link>
+    ]
 
     const settings = [
         <Link onClick={() => {
         }}>{currentUser && currentUser.hoTen}</Link>,
-        <Link onClick={() => {
+        <Link>Tài khoản</Link>,
 
-        }}>Tài khoản</Link>,
-        <Link style={{ display: currentUser != null && currentUser.maLoaiNguoiDung == 'GV' ? "block" : "none" }}
-            onClick={() => {
-
-            }}>Quản trị</Link>,
         <Link onClick={() => {
             setCurrentUser(null)
             localStorage.setItem(TOKEN, null)
             localStorage.setItem(CURRENT_USER, null)
             navigate(PATH.HOME)
-        }}>Đăng xuất</Link>]
+        }}>Đăng xuất</Link>,
+        <Link style={{ display: currentUser != null && currentUser.maLoaiNguoiDung == 'GV' ? "block" : "none" }}
+        >Quản trị</Link>]
 
     console.log('CURRENT_USER: ', currentUser)
     const [anchorElNav, setAnchorElNav] = useState(null)
     const [anchorElUser, setAnchorElUser] = useState(null)
-    const [searchValue, setSearchValue] = useState('')
+    const [searchValue, setSearchValue] = useState(null)
     const isLogin = false
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -168,8 +172,10 @@ const Header = () => {
                         <form className="group" style={{ width: '100%' }}
                             onSubmit={(event) => {
                                 event.preventDefault()
-                                navigate(`/${PATH.TIM_KIEM_KHOA_HOC}/${searchValue}`)
+                                if (searchValue.trim() != null && searchValue.trim() != '') {
+                                    navigate(`/${PATH.TIM_KIEM_KHOA_HOC}/${searchValue}`)
 
+                                }
                             }}>
                             <svg className="icon" aria-hidden="true" viewBox="0 0 24 24"><g><path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z" /></g></svg>
                             <input placeholder="Tìm kiếm" type="search"
@@ -183,7 +189,7 @@ const Header = () => {
                     </Box>
 
                     <Box sx={{ display: 'flex' }}>
-                        <Stack direction={'row'} spacing={2} style={{ display: currentUser != null ? "none" : "flex" }}>
+                        <Stack direction={'row'} spacing={2} className={header.btnAuth} style={{ display: currentUser != null ? "none" : "flex" }}>
                             <CustomButton variant='contained' sx={{ width: 'max-content' }} onClick={() => { navigate(PATH.LOGIN) }}>Đăng nhập </CustomButton>
                             <CustomButton variant='contained' sx={{ width: 'max-content' }} >Đăng ký </CustomButton>
                         </Stack>
@@ -210,7 +216,9 @@ const Header = () => {
                         >
                             {settings.map((setting) => (
                                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
+                                    {/* <Typography textAlign="center"> */}
+                                    {setting}
+                                    {/* </Typography> */}
                                 </MenuItem>
                             ))}
                         </Menu>

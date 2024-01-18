@@ -19,8 +19,8 @@ export const getListCourseAPI = async () => {
                     MaNhom: GROUP_CODE,
                 },
             });
-        console.log('response: ', response)
-        return response.data;
+        // console.log('response: ', response.data.slice(0, 10))
+        return response.data.slice(0, 10)
     } catch (error) {
         throw "Loi";
     }

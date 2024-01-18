@@ -48,7 +48,7 @@ const BannerDanhMuc = () => {
                     <Box sx={{
                         paddingLeft: '.5rem'
                     }}>
-                        <Typography sx={{ fontSize: '5rem', color: '#fff' }}>
+                        <Typography sx={{ fontSize: '5rem', color: '#fff' }} className='tenDanhMuc'>
                             {nameDanhMuc()}
                         </Typography>
 

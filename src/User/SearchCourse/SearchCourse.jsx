@@ -22,9 +22,11 @@ const SearchCourse = () => {
 
     return (
         <div>
-            <Container sx={{ marginTop: '10rem' }}>
+            <Container sx={{ marginTop: '10rem',height:'100vh' }}>
+                {error == null && <Typography style={{ fontSize: '3rem' }}>Đã tìm thấy các khóa học '{tenKhoaHoc}'</Typography>}
                 <Grid container >
                     {error == null ? (
+
                         data?.map((item) => (
                             <Grid xs={12} md={3} sm={4} key={item.maKhoaHoc} gap={4}>
                                 <Card sx={{ margin: '.5rem', maxWidth: '100%', borderRadius: '12px' }}>
@@ -72,7 +74,7 @@ const SearchCourse = () => {
                         )
 
                         )
-                    ) : (<Container className='' style={{ textAlign: 'center', fontSize: '3rem',color:'#909090' }}>{error}</Container>)
+                    ) : (<Container className='' style={{ textAlign: 'center', fontSize: '3rem', color: '#909090' }}>{error}</Container>)
 
                     }
 

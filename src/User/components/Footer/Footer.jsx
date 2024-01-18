@@ -14,6 +14,7 @@ const Footer = () => {
                 //         : theme.palette.grey[800]
                 ,
                 p: 6,
+                // marginTop:'25rem'
             }}
         >
             <Container maxWidth="lg">
