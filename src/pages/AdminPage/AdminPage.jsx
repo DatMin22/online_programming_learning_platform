@@ -19,7 +19,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import SearchIcon from '@mui/icons-material/Search';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from "react-router-dom";
-import { getListUserApi, addUserApi, deleteUserApi, updateUserApi, searchUserApi } from '../../APIs/QuanLyNguoiDungAPI';
+import { getListUserApi, deleteUserApi } from '../../APIs/QuanLyNguoiDungAPI';
 
 const MainContent = styled(Container)({
   marginLeft: '140px',
@@ -34,9 +34,9 @@ const MainContent = styled(Container)({
       queryFn: () => getListUserApi(),
   });
 
-  const handleDeleteUser = async (taiKhoan) => {
+  const handleDeleteUser = async () => {
     try {
-      await deleteUserApi(taiKhoan);
+      await deleteUserApi();
       // Refetch user data after deletion
       refetch();
     } catch (error) {

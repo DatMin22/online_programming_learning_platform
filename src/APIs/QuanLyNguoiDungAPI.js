@@ -37,15 +37,14 @@ export const addUserApi = async (payload) => {
     }
   };
 
-  export const deleteUserApi = async (taiKhoan) => {
+  export const deleteUserApi = async () => {
   try {
     const token = localStorage.getItem(TOKEN);
 
-    const response = await fetcher.delete("/QuanLyNguoiDung/XoaNguoiDung?taiKhoan=${taiKhoan}", {
+    const response = await fetcher.delete(`/QuanLyNguoiDung/XoaNguoiDung?taiKhoan=${taiKhoan}`, {
       headers: {
         Authorization: `Bearer ${token}`,
-      },
-      data: { taiKhoan },
+      }
     });
 
     console.log("response: ", response);
