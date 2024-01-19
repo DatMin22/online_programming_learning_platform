@@ -10,10 +10,12 @@ import Login from './User/modules/Login/Login'
 import "./App.css";
 import AdminLayout from "./layouts/AdminLayout/AdminLayout";
 import { AdminPage } from "./pages/AdminPage/AdminPage";
-import AddUser from './User/modules/AddUser/AddUser'
 import { SelectPage } from './pages/AdminPage/SelectPage'
 import CourseManagement from './pages/AdminPage/CourseManagement'
-import AddCourse from './User/modules/AddUser/AddCourse'
+import AddUser from './Admin/modules/AddUser/AddUser'
+import AddCourse from './Admin/modules/AddUser/AddCourse'
+import UserSearch from './Admin/AdminSearch/UserSearch'
+import CourseSearch from './Admin/AdminSearch/CourseSearch'
 
 
 function App() {
@@ -44,6 +46,10 @@ function App() {
         <Route path="/admin/quanlykhoahoc" element={<CourseManagement />} />
         <Route path="/add-user" element={<AddUser />} />
         <Route path="/add-course" element={<AddCourse />} />
+        <Route path="/user-search" element={<UserSearch />} />
+        <Route path="/course-search" element={<CourseSearch />} />
+
+
 
 
 

@@ -11,10 +11,11 @@ import {
   TableCell,
   TableBody,
 } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 import { useQuery } from '@tanstack/react-query';
 import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from "react-router-dom";
-import { getListCourseAPI, searchCourseByNameAPI} from '../../APIs/QuanLyKhoaHocAPIs';
+import { getListCourseAPI, deleteCourseApi} from '../../APIs/QuanLyKhoaHocAPIs';
 
 const MainContent = styled(Container)({
   marginLeft: '140px',
@@ -22,8 +23,6 @@ const MainContent = styled(Container)({
 });
 
 export const CourseManagement = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [courses, setCourses] = useState([]);
   const navigate = useNavigate();
 
 
@@ -32,27 +31,13 @@ export const CourseManagement = () => {
     queryFn: () => getListCourseAPI(),
   });
 
-  useEffect(() => {
-    handleSearch();
-  }, [searchTerm]);
-
-  const handleDeleteCourse = async (maKhoaHoc) => {
+  const handleDeleteCourse = async (MaKhoaHoc) => {
     try {
-      
+      await deleteCourseApi(MaKhoaHoc);
+      // Refetch user data after deletion
+      refetch();
     } catch (error) {
       console.error('Error deleting course:', error);
-
-      
-    }
-  };
-
-  const handleSearch = async () => {
-    try {
-      // Gọi hàm tìm kiếm với tham số tenKhoaHoc
-      const searchResultsData = await searchCourseByNameAPI(searchTerm);
-      setCourses(searchResultsData);
-    } catch (error) {
-      console.error('Error searching course:', error);
     }
   };
 
@@ -71,18 +56,14 @@ export const CourseManagement = () => {
         </Button>
 
         {/* Chức năng tìm kiếm khóa học */}
-        <TextField
-          label="Tên khóa học"
-          variant="outlined"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={{ marginRight: '16px' }}
-        />
         <Button
           variant="outlined"
-          onClick={handleSearch}
+          startIcon={<SearchIcon />}
+          onClick={() => {
+            navigate(`/course-search`);
+          }}
         >
-          Tìm kiếm
+          Tìm kiếm khóa học
         </Button>
 
         {/* Bảng hiển thị danh sách khóa học */}

@@ -90,5 +90,24 @@ export const addCourseApi = async (payload) => {
         } catch (error) {
           throw "Loi";
         }
-      };
+};
+
+
+export const deleteCourseApi = async (MaKhoaHoc) => {
+    try {
+      const token = localStorage.getItem(TOKEN);
+  
+      const response = await fetcher.delete("/QuanLyNguoiDung/XoaNguoiDung", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: { MaKhoaHoc },
+      });
+  
+      console.log("response: ", response);
+      return response.data;
+    } catch (error) {
+      throw "Loi";
+    }
+  };
 

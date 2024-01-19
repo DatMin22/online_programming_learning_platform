@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { addUserApi, getListUserApi } from '../../../APIs/QuanLyNguoiDungAPI';
+import { addUserApi } from '../../../APIs/QuanLyNguoiDungAPI';
 import { GROUP_CODE } from "../../../constant";
 
 

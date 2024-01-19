@@ -27,8 +27,7 @@ export const addUserApi = async (payload) => {
       const response = await fetcher.post("/QuanLyNguoiDung/ThemNguoiDung",payload, {
         headers: {
           Authorization: `Bearer ${token}`,
-        },
-        data: { taiKhoan },
+        }
       });
   
       console.log("response: ", response);
