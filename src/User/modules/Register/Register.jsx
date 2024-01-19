@@ -6,7 +6,7 @@ import { PATH } from '../../../routes/path';
 import { Box, Container, Grid, IconButton, InputAdornment, Stack, TextField, Typography } from '@mui/material';
 import { LoadingButton } from "@mui/lab"
 import { yupResolver } from "@hookform/resolvers/yup";
-import { LoginAPI } from '../../../APIs/UserAPIs';
+import { LoginAPI, registerAPI } from '../../../APIs/UserAPIs';
 import { Link, useNavigate } from 'react-router-dom';
 import { CustomButton } from '../../components/Button/CustomButton';
 import login from '../../../lotties/login.json'
@@ -15,8 +15,8 @@ import form from '../../../lotties/form.json'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Lottie from 'react-lottie'
-import loginStyle from './login.module.scss'
-import { CURRENT_USER, TOKEN } from '../../../constant';
+import registerStyle from './register.module.scss'
+import { CURRENT_USER, GROUP_CODE, TOKEN } from '../../../constant';
 const notify = (message, status) => toast(message)
 const defaultOptions = {
     loop: true,
@@ -34,10 +34,14 @@ const defaultOptions1 = {
         preserveAspectRatio: 'xMidYMid slice'
     }
 };
-const Login = () => {
+const Register = () => {
     const navigate = useNavigate()
     const schema = yup.object({
-
+        hoTen: yup.string().required("Vui lòng nhập thông tin"),
+        email: yup
+            .string()
+            .email("Không đúng định dạng Email")
+            .required("Vui lòng nhập thông tin"),
         taiKhoan: yup
             .string()
             .required("Vui lòng nhập thông tin")
@@ -49,7 +53,10 @@ const Login = () => {
                 /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/,
                 "Mật khẩu chứa ít nhất 8 ký tự bao gồm 1 ký tự viết hoa, 1 ký tự đặc biệt, 1 ký tự số, 1 ký tự viết thường."
             ),
-
+        soDT: yup
+            .string()
+            .required("Vui lòng nhập thông tin")
+            .matches(/^\d+$/, "Vui lòng nhập số"),
     });
     const {
         register,
@@ -59,23 +66,24 @@ const Login = () => {
         defaultValues: {
             taiKhoan: "",
             matKhau: "",
+            hoTen: "",
+            soDT: "",
+            maNhom: GROUP_CODE,
+            email: ""
         },
         mode: "all",
         resolver: yupResolver(schema),
     });
 
-    const { mutate: handlelogin, isPending, isSuccess, status, data, error } = useMutation({
-        mutationFn: (payload) => LoginAPI(payload),
+    const { mutate: handleRegister, isPending, isSuccess, status, data, error } = useMutation({
+        mutationFn: (payload) => registerAPI(payload),
         onSuccess: (data) => {
             console.log('data: ', data)
             // luu vao local
             if (data && data.status == 200) {
-                toast.success(`Đăng nhập thành công!`)
-                localStorage.setItem(TOKEN, JSON.stringify(data.data.accessToken))
-                localStorage.setItem(CURRENT_USER, JSON.stringify(data.data))
-
+                toast.success(`Đăng ký thành công!`)
                 setTimeout(() => {
-                    navigate(PATH.HOME)
+                    navigate(PATH.LOGIN)
 
                 }, 2000)
             }
@@ -85,25 +93,27 @@ const Login = () => {
             toast.error(error)
         },
     })
-
+    // console.log('error: ', error)
+    // console.log('isSuccess: ', isSuccess)
+    // console.log('data: ', data)
 
     const onSubmit = (payload) => {
-        handlelogin(payload)
+        handleRegister(payload)
     };
     return (
         <div>
+            {/* <button onClick={notify}>Notify !</button> */}
             <ToastContainer />
-            <Link style={{ position: 'fixed', margin: '2rem' }} to={PATH.HOME}>
+            <Link className={registerStyle.logo} style={{ position: 'fixed', margin: '2rem' }} to={PATH.HOME}>
                 <img src="./images/D-Learning.png" alt="" width={200} />
             </Link>
-
-            <div className={loginStyle.formAnimate}>
+            <div className={registerStyle.formAnimate}>
                 <Lottie options={defaultOptions1} width={'100%'} height={'100%'} />
             </div>
 
-            <Container maxWidth="lg" className={loginStyle.login}>
+            <Container maxWidth="lg" className={registerStyle.register}>
 
-                <Box width={'100%'} className={loginStyle.loginBg}>
+                <Box width={'100%'} className={registerStyle.registerBg}>
                     <Lottie options={defaultOptions} width={'100%'} height={'100%'} />
                 </Box>
                 <Box width={'80%'} sx={{ backgroundColor: '#e3e3e3c7', padding: '2rem', borderRadius: '10px' }}>
@@ -111,17 +121,31 @@ const Login = () => {
                         sx={{ fontSize: "36px", fontWeight: "600" }}
                         textAlign={"center"}
                     >
-                        Đăng nhập
+                        Đăng ký
                     </Typography>
                     <Grid
                     >
                         <Grid item xs >
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <Stack spacing={3}>
-
+                                    <TextField
+                                        label="Họ tên"
+                                        fullWidth
+                                        {...register("hoTen")}
+                                        error={Boolean(errors.hoTen)}
+                                        helperText={Boolean(errors.hoTen) && errors.hoTen.message}
+                                    />
 
                                     <TextField
-                                        className={loginStyle.ipValue}
+                                        label="Email"
+                                        fullWidth
+                                        {...register("email")}
+                                        error={Boolean(errors.email)}
+                                        helperText={Boolean(errors.email) && errors.email.message}
+                                    />
+
+                                    <TextField
+                                        className={registerStyle.ipValue}
                                         label="Tài Khoản"
                                         fullWidth
                                         {...register("taiKhoan")}
@@ -130,7 +154,7 @@ const Login = () => {
                                     />
 
                                     <TextField
-                                        className={loginStyle.ipValue}
+                                        className={registerStyle.ipValue}
 
                                         label="Mật Khẩu"
                                         // type={showPassword ? "text" : "password"}
@@ -154,6 +178,13 @@ const Login = () => {
                                     // }}
                                     />
 
+                                    <TextField
+                                        label="Số điện thoại"
+                                        fullWidth
+                                        {...register("soDT")}
+                                        error={Boolean(errors.soDT)}
+                                        helperText={Boolean(errors.soDT) && errors.soDT.message}
+                                    />
 
                                     <CustomButton
                                         variant="contained"
@@ -162,10 +193,9 @@ const Login = () => {
                                         type="submit"
                                     // loading={isPending}
                                     >
-                                        Đăng nhập
+                                        Đăng ký
                                     </CustomButton>
-                                    <Link to={PATH.REGISTER} style={{ color: 'GrayText', textAlign: 'end', marginTop: '.5rem' }}>Chưa có tài khoản? Đăng ký.</Link>
-
+                                    <Link to={PATH.LOGIN} style={{ color: 'GrayText', textAlign: 'end', marginTop: '.5rem' }}>Đã có tài khoản? Đăng nhập.</Link>
                                 </Stack>
                             </form>
                         </Grid>
@@ -176,4 +206,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Register 

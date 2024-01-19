@@ -11,6 +11,7 @@ import "./App.css";
 import AdminLayout from "./layouts/AdminLayout/AdminLayout";
 import { AdminPage } from "./pages/AdminPage/AdminPage";
 
+import Register from './User/modules/Register'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
 
         </Route>
         <Route path={PATH.LOGIN} element={<Login />} />
+        <Route path={PATH.REGISTER} element={<Register />} />
 
         {/* GIAO DIỆN ADMIN */}
         <Route path="/admin" element={<AdminLayout />}>

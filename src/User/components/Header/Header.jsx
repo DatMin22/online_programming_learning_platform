@@ -191,7 +191,7 @@ const Header = () => {
                     <Box sx={{ display: 'flex' }}>
                         <Stack direction={'row'} spacing={2} className={header.btnAuth} style={{ display: currentUser != null ? "none" : "flex" }}>
                             <CustomButton variant='contained' sx={{ width: 'max-content' }} onClick={() => { navigate(PATH.LOGIN) }}>Đăng nhập </CustomButton>
-                            <CustomButton variant='contained' sx={{ width: 'max-content' }} >Đăng ký </CustomButton>
+                            <CustomButton variant='contained' sx={{ width: 'max-content' }} onClick={() => { navigate(PATH.REGISTER) }}>Đăng ký </CustomButton>
                         </Stack>
                         <Tooltip title="Open settings" style={{ display: currentUser != null ? "block" : "none" }}>
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
