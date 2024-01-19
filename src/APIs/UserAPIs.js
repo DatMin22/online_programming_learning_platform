@@ -33,11 +33,13 @@ export const LoginAPI = async (payload) => {
 }
 export const registerAPI = async (payload) => {
   try {
-    const response = await fetcher.post("/QuanLyNguoiDung/DangKy", payload);
-    //payload = {taikhoan, matkhau, ....}
-    return response.data.content;
+    const response = await fetcher.post("/QuanLyNguoiDung/DangKy", payload)
+    console.log('response dangky: ', response)
+    if (response.status == 200) {
+      return response
+    }
   } catch (error) {
-    throw "Loi";
+    throw error.response.data
   }
 }
 

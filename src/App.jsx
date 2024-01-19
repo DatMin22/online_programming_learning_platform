@@ -8,6 +8,7 @@ import { PATH } from './routes/path'
 import DanhSachKhoaHocTheoDanhMuc from './User/modules/DanhSachKhoaHocTheoDanhMuc'
 import SearchCourse from './User/SearchCourse'
 import Login from './User/modules/Login/Login'
+import Register from './User/modules/Register'
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
 
         </Route>
         <Route path={PATH.LOGIN} element={<Login />} />
+        <Route path={PATH.REGISTER} element={<Register />} />
 
 
 
