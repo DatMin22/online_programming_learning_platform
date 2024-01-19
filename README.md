@@ -1,8 +1,18 @@
-# React + Vite
+# DLearning - Website học lập trình trực tuyến
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Trang web cung cấp các khóa học lập trình nhiều ngành khác nhau: Front end, back end, Mobile, Web, tư duy,...
+- Tìm kiếm khóa học theo tên, theo danh mục khóa học
+- Đăng nhập,, đăng ký
 
-Currently, two official plugins are available:
+## Công nghệ sử dụng
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+HTMLCSS: Xây dựng giao diện web.
+Sass: Tăng cường khả năng kiểm soát và hiệu suất của CSS.
+Javascript: Thêm tính năng tương tác cho trang web.
+ReactJS: Xây dựng giao diện web SPA.
+Material UI: Thư viện UI dựa trên ReactJS cung cấp các thành phần UI được thiết kế theo phong cách Material Design của Google.
+React Query: Quản lý dữ liệu từ API trong ReactJS.
+React Router: Quản lý điều hướng trong ReactJS.
+React hook form: Một thư viện giúp tạo form trong ReactJS.
+Yup: Một thư viện giúp validate dữ liệu trong ReactJS.
+Axios: Một thư viện giúp thực hiện request HTTP trong JavaScript.
