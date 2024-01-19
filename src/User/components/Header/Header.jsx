@@ -26,6 +26,7 @@ const Header = () => {
         }}>Tài khoản</Link>,
         <Link style={{ display: currentUser != null && currentUser.maLoaiNguoiDung == 'GV' ? "block" : "none" }}
             onClick={() => {
+
             }}>Quản trị</Link>,
         <Link onClick={() => {
             setCurrentUser(null)
