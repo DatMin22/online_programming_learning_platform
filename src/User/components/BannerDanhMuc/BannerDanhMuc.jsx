@@ -40,7 +40,7 @@ const BannerDanhMuc = () => {
     }
     return (
         <div className='bgdanhMuc' style={{
-            
+            paddingTop: '4rem'
         }}>
 
             <Box maxHeight={'300px'} width={'90%'} margin={'auto'} >

@@ -5,7 +5,7 @@ import Header from '../../components/Header'
 import { getCourseByMaKhoaHocAPI } from '../../../APIs/QuanLyKhoaHocAPIs'
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
-
+import ctkhStyle from './chiTietKhoaHoc.module.scss'
 const ChiTietKhoaHoc = () => {
     const { maKhoaHoc } = useParams()
     const { isPending, error, data } = useQuery({
@@ -17,9 +17,9 @@ const ChiTietKhoaHoc = () => {
     return (
         <>
             <Header />
-            <Container sx={{ marginTop: '10rem' }}>
-                <Stack direction={'row'}>
-                    <Card sx={{ margin: '.5rem', maxWidth: '100%', borderRadius: '12px' }}>
+            <Container sx={{ marginTop: '10rem' }} className={ctkhStyle.ctkh}>
+                <Stack direction={'row'} display={'flex'} justifyContent={'center'} >
+                    <Card className={ctkhStyle.ctkh_left} sx={{ margin: '.5rem', maxWidth: '100%', borderRadius: '12px' }}>
                         <CardMedia
                             component="img"
                             alt="green iguana"

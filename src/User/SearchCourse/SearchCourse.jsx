@@ -22,7 +22,7 @@ const SearchCourse = () => {
 
     return (
         <div>
-            <Container sx={{ marginTop: '10rem',height:'100vh' }}>
+            <Container sx={{ marginTop: '10rem',height:'max-content' }}>
                 {error == null && <Typography style={{ fontSize: '3rem' }}>Đã tìm thấy các khóa học '{tenKhoaHoc}'</Typography>}
                 <Grid container >
                     {error == null ? (

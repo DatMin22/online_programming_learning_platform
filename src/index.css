@@ -34,6 +34,7 @@ a {
 
 
 .bgdanhMuc {
+    /* padding-top: 5rem; */
     /* background: #fad035;
     background: linear-gradient(158deg, #fad035 0%, #ff6363 95%);
     background: -webkit-linear-gradient(158deg, #fad035 0%, #ff6363 95%);
@@ -49,48 +50,6 @@ a {
         no-repeat center/cover;
 }
 
-.group {
-    display: flex;
-    line-height: 28px;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    margin-left: 3rem;
-}
-
-.input {
-    width: 70%;
-    height: 40px;
-    line-height: 28px;
-    padding: 0 1rem;
-    padding-left: 2.5rem;
-    border: 2px solid transparent;
-    border-radius: 8px;
-    outline: none;
-    background-color: #f3f3f4;
-    color: #0d0c22;
-    transition: 0.3s ease;
-}
-
-.input::placeholder {
-    color: #9e9ea7;
-}
-
-.input:focus,
-input:hover {
-    outline: none;
-    border-color: rgba(234, 76, 137, 0.4);
-    background-color: #fff;
-    box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
-}
-
-.icon {
-    position: absolute;
-    left: 1rem;
-    fill: #9e9ea7;
-    width: 1rem;
-    height: 1rem;
-}
 
 @media only screen and (max-width: 768px) {
     .tenDanhMuc {

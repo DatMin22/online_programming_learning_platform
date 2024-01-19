@@ -109,9 +109,10 @@ const Header = () => {
                             margin: '0 1.5rem'
                         }}
                         to={'/'}
+                        className={header.logoDLearning}
                     >
                         <img style={{
-                        }} src="/images/D-Learning.png" className={header.logoDLearning} width={200} alt="logo" />
+                        }} src="/images/D-Learning.png" width={200} alt="logo" />
                     </Link>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -166,10 +167,12 @@ const Header = () => {
                     >
                         <img src="/images/DL.png" width={50} alt="" className={header.logoDL} />
                     </Link>
-                    <Box sx={{ width: '100%', display: { xs: 'none', md: 'flex' }, justifyContent: 'space-around', alignItems: 'center' }}>
-                        <MenuDanhMucKhoaHoc />
+                    <Box id={header.search} sx={{ width: '100%', display: { md: 'flex' }, justifyContent: 'space-around', alignItems: 'center' }}>
+                        <Stack className={header.dropMenu} width={'400px'}>
+                            <MenuDanhMucKhoaHoc />
+                        </Stack>
 
-                        <form className="group" style={{ width: '100%' }}
+                        <form className={header.group} style={{ width: '100%' }}
                             onSubmit={(event) => {
                                 event.preventDefault()
                                 if (searchValue.trim() != null && searchValue.trim() != '') {
@@ -177,12 +180,12 @@ const Header = () => {
 
                                 }
                             }}>
-                            <svg className="icon" aria-hidden="true" viewBox="0 0 24 24"><g><path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z" /></g></svg>
+                            <svg className={header.icon} aria-hidden="true" viewBox="0 0 24 24"><g><path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z" /></g></svg>
                             <input placeholder="Tìm kiếm" type="search"
                                 value={searchValue}
                                 onChange={(event) => {
                                     setSearchValue(event.target.value)
-                                }} className="input" />
+                                }} className={header.input} />
                         </form>
 
 
@@ -223,7 +226,11 @@ const Header = () => {
                             ))}
                         </Menu>
                     </Box>
+
                 </Toolbar>
+                <Stack className={header.dropMenuMoblie} display={'none'} width={'80%'} margin={'auto'} >
+                    <MenuDanhMucKhoaHoc />
+                </Stack>
             </Container>
         </AppBar>
     )
