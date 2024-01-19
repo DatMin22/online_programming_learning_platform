@@ -26,11 +26,9 @@ const MainContent = styled(Container)({
     const [searchTerm, setSearchTerm] = useState('');
     const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    handleSearch();
-  }, [searchTerm]);
   
-  const handleSearch = async () => {
+  
+  const handleSearchButtonClick  = async () => {
     try {
       const searchResultsData = await searchUserApi(searchTerm);
       setUsers(searchResultsData); 
@@ -53,7 +51,7 @@ const MainContent = styled(Container)({
         <Button
           variant="outlined"
           startIcon={<SearchIcon />}
-          onClick={handleSearch}
+          onClick={handleSearchButtonClick}
         >
         </Button>
 
