@@ -3,7 +3,7 @@
 - Trang web cung cấp các khóa học lập trình nhiều ngành khác nhau: Front end, back end, Mobile, Web, tư duy,...
 - Tìm kiếm khóa học theo tên, theo danh mục khóa học
 - Đăng nhập,, đăng ký
-
+- Trang admin quản lý: /admin
 ## Công nghệ sử dụng
 
 - HTMLCSS: Xây dựng giao diện web.
