@@ -1,14 +1,13 @@
-import { AdminPage } from "../../pages/AdminPage/AdminPage"
+import React from 'react'
+import { SelectPage } from "../../pages/AdminPage/SelectPage"
 
 
 const AdminLayout = () => {
-
     return (
         <>
-            <AdminPage />
+            <SelectPage/>
         </>
     )
-
 }
 
 export default AdminLayout

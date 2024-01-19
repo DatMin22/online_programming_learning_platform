@@ -74,5 +74,40 @@ export const searchCourseByNameAPI = async (tenKhoaHoc) => {
     }
 }
 
+export const addCourseApi = async (payload) => {
+    try {
+        const token = localStorage.getItem(TOKEN);
+    
+        const response = await fetcher.get("/QuanLyKhoaHoc/LayDanhSachKhoaHoc",payload, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            data: { maKhoaHoc },
+          });
+      
+          console.log("response: ", response);
+          return response.data;
+        } catch (error) {
+          throw "Loi";
+        }
+};
 
+
+export const deleteCourseApi = async (MaKhoaHoc) => {
+    try {
+      const token = localStorage.getItem(TOKEN);
+  
+      const response = await fetcher.delete("/QuanLyNguoiDung/XoaNguoiDung", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: { MaKhoaHoc },
+      });
+  
+      console.log("response: ", response);
+      return response.data;
+    } catch (error) {
+      throw "Loi";
+    }
+  };
 
