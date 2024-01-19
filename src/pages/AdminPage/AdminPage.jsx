@@ -3,7 +3,6 @@ import {
   styled,
   IconButton,
   Container,
-  TextField,
   Button,
   Table,
   TableContainer,
@@ -12,7 +11,6 @@ import {
   TableCell,
   TableBody,
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -29,7 +27,7 @@ const MainContent = styled(Container)({
   export const AdminPage = () => {
     const navigate = useNavigate();
 
-    const { isFetching, error, data } = useQuery({
+    const { data } = useQuery({
       queryKey: ['ListUser'],
       queryFn: () => getListUserApi(),
   });

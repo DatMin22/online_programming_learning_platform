@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addUserApi } from '../../../APIs/QuanLyNguoiDungAPI';
 import { GROUP_CODE } from "../../../constant";
+import { LoadingButton } from "@mui/lab";
 
 
 const AddUser = () => {
@@ -25,10 +26,10 @@ const AddUser = () => {
         email: "",
     },
   });
-  const { mutate: handleAddUser } = useMutation({
+  const { mutate: handleAddUser, isPending } = useMutation({
     mutationFn: (payload) => addUserApi(payload),
     onSuccess: () => {
-      queryClient.invalidateQueries('ListUser');
+      queryClient.invalidateQueries( {queryKey:'ListUser'});
     },
     onError: (error) => {
       console.error('Error adding user:', error);
@@ -42,6 +43,7 @@ const AddUser = () => {
     formData.append("hoTen", formValues.hoTen);
     formData.append("soDT", formValues.soDT);
     formData.append("maLoaiNguoiDung", formValues.maLoaiNguoiDung);
+    formData.append("maNhom", formValues.maNhom);
     formData.append("email", formValues.email);
     handleAddUser(formData);
   };
@@ -83,10 +85,10 @@ const AddUser = () => {
           label="Email"
           {...register('email', { required: true })}
         />
-       
-        <Button type="submit" variant="contained" color="primary" >
+      
+        <LoadingButton type="submit"  loading={isPending} variant="contained" color="primary" >
           Thêm Người Dùng
-        </Button>
+        </LoadingButton>
       </form>
     </Container>
   );

@@ -22,31 +22,18 @@ export const getListUserApi = async () => {
     
 export const addUserApi = async (payload) => {
     try {
-    const token = localStorage.getItem(TOKEN);
-
-      const response = await fetcher.post("/QuanLyNguoiDung/ThemNguoiDung",payload, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        }
-      });
-  
+      const response = await fetcher.post("/QuanLyNguoiDung/ThemNguoiDung",payload);
       console.log("response: ", response);
       return response.data;
     } catch (error) {
+      console.error('Error in addUserApi:', error);
       throw "Loi";
     }
   };
 
   export const deleteUserApi = async () => {
   try {
-    const token = localStorage.getItem(TOKEN);
-
-    const response = await fetcher.delete(`/QuanLyNguoiDung/XoaNguoiDung?taiKhoan=${taiKhoan}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      }
-    });
-
+    const response = await fetcher.delete("/QuanLyNguoiDung/XoaNguoiDung");
     console.log("response: ", response);
     return response.data;
   } catch (error) {
