@@ -16,3 +16,7 @@
 - React hook form: Một thư viện giúp tạo form trong ReactJS.
 - Yup: Một thư viện giúp validate dữ liệu trong ReactJS.
 - Axios: Một thư viện giúp thực hiện request HTTP trong JavaScript.
+
+
+## Link phân chia công việc
+https://docs.google.com/spreadsheets/d/15lSme6tQfXihWMqU13AxPp_FAuuYL42K/edit?usp=sharing&ouid=113574885173096616063&rtpof=true&sd=true
